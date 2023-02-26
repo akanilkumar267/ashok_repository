@@ -1,0 +1,37 @@
+<app-header [page_url]="page_name"></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="margin-top:50px">
+        <form class="example-form" [formGroup]="signInGroup" (ngSubmit)="loginFormSubmit()">  
+          <mat-card class="example-card">
+            <mat-card-header class="m-auto">
+                <mat-card-title>Login</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                
+                    <mat-form-field style="width:500px" class="example-full-width" apperance="outline">
+                        <input matInput placeholder="email" formControlName="email">
+                    </mat-form-field>
+                        <mat-error *ngIf="formSubmit && signData['email'].value=='' && signData['email'].errors && signData['email'].errors['required']">please enter valid email id</mat-error>
+
+                        
+                    <mat-form-field style="width:500px" class="example-full-width">
+                        <input matInput type ='password' placeholder="password" formControlName="password">
+                    </mat-form-field>
+                    
+                    <mat-error *ngIf="formSubmit && signData['password'].value=='' && signData['password'].errors && signData['password'].errors['required']">please enter valid password</mat-error>
+            </mat-card-content>
+            <mat-card-actions class="m-auto">
+                <button mat-raised-button color="primary">Login</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+</div>
+
+
