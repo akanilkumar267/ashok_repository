@@ -45,7 +45,7 @@ export class MyprofileComponent {
      
    userInformation(user_id:string){
     this.registration_service.getuserinfo(user_id).subscribe((res:any)=>{
-      console.log(res);
+      //console.log(res);
       this.UserIno=res.view_data;
       console.log(this.UserIno)
       this.register = this.rb.group({

@@ -32,9 +32,14 @@ export class LoginService {
     return this.registerService.post<any>(url,user_id);
   }
 
-  public changePassword(user_id:any,password:any): Observable<any> {
+  public changePassword(user_id:any): Observable<any> {
     const url = environment.apiURL+'admin/change_password';
-    return this.registerService.post<any>(url,user_id,password);
+    return this.registerService.post<any>(url,user_id);
+  }
+
+  public categeriesinfo(): Observable<any> {
+    const url = environment.apiURL+'admin/categories';
+    return this.registerService.get<any>(url);
   }
 
 

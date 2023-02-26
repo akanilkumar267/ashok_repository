@@ -17,8 +17,6 @@ export class ChangepasswordComponent {
      
       password:['',[Validators.required,Validators.minLength(6)]],
       confirm_password:['',[Validators.required,Validators.minLength(6)]],
-      
-    
     })
 
   }
@@ -26,7 +24,7 @@ export class ChangepasswordComponent {
     return this.register.controls;
   }
 
-   
+ 
   formSubmit(){
    this.submitted=true;
    
@@ -34,20 +32,20 @@ export class ChangepasswordComponent {
    if(this.register.invalid){
     return;
    }
-   var new_register_Data: any = new FormData();
+   var new_password: any = new FormData();
+   new_password.append('user_id',localStorage.getItem('user_id'));
+   new_password.append('password', this.register.value.password);
    
-   new_register_Data.append('password', this.register.value.password);
-   new_register_Data.append('confirm_password', this.register.value.confirm_password);
   
 
-   console.log(new_register_Data);
-   this.registration_service.PostRegisterData(new_register_Data).subscribe((response:any)=>{
+   //console.log(new_password);
+   this.registration_service.changePassword(new_password).subscribe((response:any)=>{
     console.log(response);
     if(response.status==1)
     {
-      this.alertServie.SuccessMessage("Data saved Successfully");
+      this.alertServie.SuccessMessage("New password updated succesfully");
     }else{
-      this.alertServie.FailtureMessage("Unable to save Data");
+      this.alertServie.FailtureMessage("Unable to update new password");
     }
    })
    
