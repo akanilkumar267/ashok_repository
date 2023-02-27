@@ -42,5 +42,10 @@ export class LoginService {
     return this.registerService.get<any>(url);
   }
 
+  public addcategoryservice(categoriesData:any): Observable<any> {
+    const url = environment.apiURL+'admin/categories';
+    return this.registerService.post<any>(url,categoriesData);
+  }
+
 
 }

@@ -13,9 +13,64 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet>
+     <!-- Adduser button start -->
+                 <div class="container row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4 pt-3" ><h1><b>Categories list</b></h1></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2 pt-3" *ngIf="!ishideform"><button class="btn btn-default btn-circle" (click)="ishideform = !ishideform">ADD NEW</button></div>
+             </div>
+             <div class="container">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="row" *ngIf="ishideform">
+                        <form [formGroup]="addcategory" (ngSubmit)="categoryFormSubmit()">
+                            <mat-card>
+                                <mat-card-header>
+                                    <mat-card-title>Add new Category</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <mat-form-field appearance="outline" style="width:450px">
+                                        <mat-label>Category name</mat-label>
+                                        <input matInput placeholder="Enter category name" formControlName="categoryname">
+                                        <mat-error
+                                        *ngIf="submitted && f['categoryname'].value=='' && f['categoryname'].errors && f['categoryname'].errors['required']">please
+                                        enter category name</mat-error>
+                                    </mat-form-field>
+    
+                                    <mat-form-field appearance="outline" style="width:450px">
+                                        <mat-label>Category Status</mat-label>
+                                            <input matInput placeholder="Enter category status" formControlName="categorystatus">
+                                            <mat-error
+                                        *ngIf="submitted && f['categorystatus'].value=='' && f['categorystatus'].errors && f['categorystatus'].errors['required']">please
+                                        enter category status</mat-error>                                    
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" style="width:450px">
+                                        <mat-label>Category sort order</mat-label>
+                                        <input matInput placeholder="Enter category sort order" formControlName="categorysortorder"> 
+                                        <mat-error
+                                        *ngIf="submitted && f['categorysortorder'].value=='' && f['categorysortorder'].errors && f['categorysortorder'].errors['required']">please
+                                        enter category sort order</mat-error>                                       
+                                    </mat-form-field>     
+                                </mat-card-content>
+    
+                                <mat-card-actions class="m-auto">
+                                    <button type="submit" mat-raised-button color="primary">SAVE</button> &nbsp;&nbsp;&nbsp;
+                                    <button (click)="ishideform = !ishideform" mat-button mat-raised-button color="warn">Cancel</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </form>
+                    </div>
+                    
+                    <div class="col-md-3"></div>
 
-
-            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" class="table table-striped">
+                </div>
+             </div>
+            </div>
+      <!-- Add user button end -->
+      <!-- Category content start -->
+            <table *ngIf=!ishideform; mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" class="table table-striped">
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 <!-- Position Column -->
@@ -52,8 +107,9 @@
 
             </table>
         
-            <mat-paginator [pageSizeOptions]="[5,10, 20,40]" showFirstLastButtons></mat-paginator>
+            <mat-paginator *ngIf=!ishideform; [pageSizeOptions]="[5,10, 20,40]" showFirstLastButtons></mat-paginator>
 
         </router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
+<!-- Category content end -->
