@@ -8,12 +8,14 @@ import { CategoriesComponent } from './categories/categories.component';
 
 import { LayoutModule } from '../common/layout/layout.module';
 import { AngularmaterialModule } from '../common/angularmaterial/angularmaterial.module';
+import { EditcategoriesComponent } from './editcategories/editcategories.component';
 
 
 @NgModule({
   declarations: [
     Dashboard1Component,
     CategoriesComponent,
+    EditcategoriesComponent,
    
   ],
   imports: [

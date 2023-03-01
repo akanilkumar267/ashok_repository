@@ -41,10 +41,13 @@
     
                                     <mat-form-field appearance="outline" style="width:450px">
                                         <mat-label>Category Status</mat-label>
-                                            <input matInput placeholder="Enter category status" formControlName="categorystatus">
+                                        <mat-select formControlName="categoryStatus">
+                                            
+                                            <mat-option *ngFor="let status of categoryStatus" [value]="status.id">{{status.name}}</mat-option>
+                                        </mat-select>
+                                            <input matInput placeholder="Enter category status" formControlName="categoryStatus">
                                             <mat-error
-                                        *ngIf="submitted && f['categorystatus'].value=='' && f['categorystatus'].errors && f['categorystatus'].errors['required']">please
-                                        enter category status</mat-error>                                    
+                                        *ngIf="submitted && f['categoryStatus'].value=='' && f['categoryStatus'].errors && f['categoryStatus'].errors['required']">please  enter category status</mat-error>                                    
                                     </mat-form-field>
                                     <mat-form-field appearance="outline" style="width:450px">
                                         <mat-label>Category sort order</mat-label>
@@ -92,11 +95,11 @@
                     <th mat-header-cell *matHeaderCellDef>Actions</th>
                     <td mat-cell *matCellDef="let element">
                         <mat-cell>
-                            <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
+                            <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" routerLink="/dashboard/editcategories/{{element.category_id}}">
                                 <mat-icon>edit</mat-icon>
                             </button>
 
-                            <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn">
+                            <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="removeRow(element.category_id)">
                                 <mat-icon>delete</mat-icon>
                             </button>
 

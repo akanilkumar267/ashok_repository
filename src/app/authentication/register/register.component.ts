@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -17,9 +18,9 @@ export class RegisterComponent {
   countries:string[]=['india','nepal','pakistan','australia','srilanka','bangladesh','south africa'];
   register:FormGroup;
   submitted:boolean=false;
-  isSubmitted:boolean=false;
+ 
   
-  constructor(private rb:FormBuilder,private registration_service:LoginService,private alertServie:CommonService){
+  constructor(private rb:FormBuilder,private registration_service:LoginService,private alertServie:CommonService,private router:Router){
     this.register = this.rb.group({
       firstname:['',Validators.required],
       lastname:['',Validators.required],
@@ -43,7 +44,7 @@ export class RegisterComponent {
    
   formSubmit(){
    this.submitted=true;
-   this.isSubmitted=true;  
+   
    // console.log(this.register.controls)
 
    if(this.register.invalid){
@@ -68,7 +69,10 @@ export class RegisterComponent {
     console.log(response);
     if(response.status==1)
     {
-      this.alertServie.SuccessMessage("Data saved Successfully");
+      
+      this.alertServie.SuccessMessage("Data saved Successfully and please login here");
+      this.router.navigate(['/authentication/sign-in'])
+
     }else{
       this.alertServie.FailtureMessage("Unable to save Data");
     }

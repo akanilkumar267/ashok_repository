@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>ConcretePage.com</span>
+    <span class="toolbar-item-spacer"></span>
+    <app-header></app-header>
+</mat-toolbar>
+
+<mat-sidenav-container class="app-container">
+    <mat-sidenav #sidenav mode="side" [class.mat-elevation-z4]="true" class="app-sidenav">
+        <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet>
+       <!-- Editcategory starts -->
+       <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 pt-5" >
+                <form [formGroup]="editcategory" (ngSubmit)="updateFormSubmit()">
+                    <mat-card>
+                        <mat-card-header class="m-auto">
+                            <mat-card-title>Upadte Category Form</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                           
+                            
+                            <mat-form-field appearance="fill" style="width:550px">
+                                <mat-label>Category name</mat-label>
+                                <input matInput placeholder="Enter category name" formControlName="categoryname">
+                                <mat-error
+                                *ngIf="submitted && f['categoryname'].value=='' && f['categoryname'].errors && f['categoryname'].errors['required']">please enter category name</mat-error>
+                            </mat-form-field>
+                            
+
+                                    <mat-form-field appearance="fill" style="width:550px">
+                                        <mat-label>Category status</mat-label>
+                                        <mat-select formControlName="categoryStatus">
+                                            <mat-option [value]="">None</mat-option>
+                                            <mat-option *ngFor="let status of categoryStatus"
+                                                [value]="status.id">{{status.name}}</mat-option>
+                                        </mat-select>
+                                        <mat-error
+                                *ngIf="submitted && f['categoryStatus'].value=='' && f['categoryStatus'].errors && f['categoryStatus'].errors['required']">please select category</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="fill" style="width:550px">
+                                        <mat-label>Sort order</mat-label>
+                                        <input matInput placeholder="Enter sort order" formControlName="sortorder">
+                                        <mat-error
+                                *ngIf="submitted && f['sortorder'].value=='' && f['sortorder'].errors && f['sortorder'].errors['required']">please sort order</mat-error>
+                                    </mat-form-field>                             
+                        </mat-card-content>
+                        <mat-card-actions class="m-auto">
+                            <button type="submit" mat-raised-button color="primary">Update</button> &nbsp;&nbsp;&nbsp;
+                            <button type="button" mat-button mat-raised-button color="warn" (click)="cancelform()">Cancel</button>
+                        </mat-card-actions>
+                    </mat-card>
+
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+       </div>
+            
+    
+       <!-- Editcategory ends -->
+        </router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

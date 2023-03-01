@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FakeComponent } from './fake.component';
+import { EditcategoriesComponent } from './editcategories.component';
 
-describe('FakeComponent', () => {
-  let component: FakeComponent;
-  let fixture: ComponentFixture<FakeComponent>;
+describe('EditcategoriesComponent', () => {
+  let component: EditcategoriesComponent;
+  let fixture: ComponentFixture<EditcategoriesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FakeComponent ]
+      declarations: [ EditcategoriesComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FakeComponent);
+    fixture = TestBed.createComponent(EditcategoriesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

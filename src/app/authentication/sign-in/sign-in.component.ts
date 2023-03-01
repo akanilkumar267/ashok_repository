@@ -27,6 +27,8 @@ export class SignInComponent {
   
    this.formSubmit=true;
    //console.log(this.signInGroup.controls);
+   console.log(this.signInGroup.invalid);
+   
    if(this.signInGroup.invalid){
     return;
    }

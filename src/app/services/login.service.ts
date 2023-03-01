@@ -43,8 +43,23 @@ export class LoginService {
   }
 
   public addcategoryservice(categoriesData:any): Observable<any> {
-    const url = environment.apiURL+'admin/categories';
+    const url = environment.apiURL+'admin/add_category';
     return this.registerService.post<any>(url,categoriesData);
+  }
+
+  public editcategoryservice(category_id:any): Observable<any> {
+    const url = environment.apiURL+'admin/view_category_data?category_id='+category_id;
+    return this.registerService.get<any>(url);
+  }
+
+  public updatecategoryservice(category_id:any): Observable<any> {
+    const url = environment.apiURL+'admin/update_category';
+    return this.registerService.post<any>(url,category_id);
+  }
+
+  public deletecategoryservice(category_id:any): Observable<any> {
+    const url = environment.apiURL+'admin/delete_category?category_id='+category_id;
+    return this.registerService.get<any>(url);
   }
 
 
