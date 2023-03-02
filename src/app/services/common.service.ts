@@ -10,7 +10,8 @@ export class CommonService {
 
   SuccessMessage(message:string)
   {
-    this.toast.success(message, 'Success');
+    this.toast.success(message, 'Success',{timeOut:20000, closeButton:true,positionClass:'toast-top-center'});
+    
   }
   FailtureMessage(message:string)
   {

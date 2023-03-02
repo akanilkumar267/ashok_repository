@@ -61,6 +61,10 @@ export class LoginService {
     const url = environment.apiURL+'admin/delete_category?category_id='+category_id;
     return this.registerService.get<any>(url);
   }
+  public subcategoriesinfo(): Observable<any> {
+    const url = environment.apiURL+'admin/sub_categories';
+    return this.registerService.get<any>(url);
+  }
 
 
 }

@@ -13,10 +13,10 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <form [formGroup]="register" (ngSubmit)="formSubmit()">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
                     <mat-card>
+                        <form [formGroup]="register" (ngSubmit)="formSubmit()">
                         <mat-card-header class="m-auto">
                             <mat-card-title>
                                 <h1>Update profile</h1>
@@ -24,7 +24,7 @@
                         </mat-card-header>
                         <mat-card-content>
                             
-                               
+                         
                                     <mat-form-field appearance="outline">
                                         <mat-label>first Name</mat-label>
                                         <input matInput placeholder="enter first name" formControlName="firstname">
@@ -33,8 +33,7 @@
                                     <mat-error
                                         *ngIf="submitted && f['firstname'].value=='' && f['firstname'].errors && f['firstname'].errors['required']">please
                                         enter first name</mat-error>
-    
-                              
+                                       
                                     <mat-form-field appearance="outline">
                                         <mat-label>Last Name</mat-label>
                                         <input matInput placeholder="enter Last name" formControlName="lastname">
@@ -43,24 +42,15 @@
                                     <mat-error
                                         *ngIf="submitted && f['lastname'].value=='' && f['lastname'].errors && f['lastname'].errors['required']">please
                                         enter last name</mat-error>
-                                
-    
-                            
-    
-    
-    
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                              
+                        
+                           
                                     <mat-radio-group formControlName="gender">
                                         <mat-radio-button value="Male">Male</mat-radio-button>
                                         <mat-radio-button value="Female">Female</mat-radio-button>
                                     </mat-radio-group>
                                     <mat-error *ngIf="submitted && f['gender'].invalid">please enter last name</mat-error>
-                                </div>
-                            </div>
-    
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                              
                                     <mat-form-field appearance="outline" style="width:600px">
                                         <mat-label>Mobile number</mat-label>
                                         <input matInput placeholder="enter 10 digits number" formControlName="phone">
@@ -69,12 +59,9 @@
                                     <mat-error
                                         *ngIf="submitted && f['phone'].value=='' && f['phone'].errors && f['phone'].errors['required']">please
                                         enter valid mobile number</mat-error>
-                                </div>
-                            </div>
+                      
     
-    
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                            
                                     <mat-form-field appearance="outline" style="width:600px">
                                         <mat-label>Email id</mat-label>
                                         <input matInput placeholder="enter email id" formControlName="email">
@@ -83,11 +70,8 @@
                                     <mat-error
                                         *ngIf="submitted && f['email'].value=='' && f['email'].errors && f['email'].errors['required']">please
                                         enter valid mobile number</mat-error>
-                                </div>
-                            </div>
+                            
     
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                                     <mat-form-field appearance="outline" style="width:600px">
                                         <mat-label>address</mat-label>
                                         <input matInput placeholder="enter the address detials" formControlName="address">
@@ -96,11 +80,9 @@
                                     <mat-error
                                         *ngIf="submitted && f['address'].value=='' && f['address'].errors && f['address'].errors['required']">password
                                         enter address details</mat-error>
-                                </div>
-                            </div>
+                            
     
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+
                                     <mat-form-field appearance="outline" style="width:600px">
                                         <mat-label>City</mat-label>
                                         <mat-select formControlName="city">
@@ -111,11 +93,9 @@
                                     <mat-error
                                         *ngIf="submitted && f['city'].status=='INVALID' && f['city'].errors && f['city'].errors['required']">please
                                         select city</mat-error>
-                                </div>
-                            </div>
+                           
     
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  
                                     <mat-form-field appearance="outline" style="width:600px">
                                         <mat-label>state</mat-label>
                                         <mat-select formControlName="state">
@@ -124,11 +104,7 @@
                                         </mat-select>
                                     </mat-form-field>
     
-                                </div>
-                            </div>
-    
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+              
                                     <mat-form-field appearance="outline" style="width:600px">
                                         <mat-label>country</mat-label>
                                         <mat-select formControlName="country">
@@ -138,9 +114,6 @@
                                         </mat-select>
                                     </mat-form-field>
     
-                                </div>
-                            </div>
-    
                            
                         </mat-card-content>
                         <div>
@@ -149,11 +122,12 @@
                                 <button type="button" mat-button mat-raised-button color="warn" (click)="cancelForm()">Cancel</button>
                             </mat-card-actions>
                         </div>
-                    </mat-card>
-                </form>
-    
-            </div>
-            <div class="col-md-2"></div>
-        </div>
+                    </form>
+                    </mat-card></div>
+                
+                <div class="col-md-3"></div>
+                </div>
+            
+        
     </mat-sidenav-content>
 </mat-sidenav-container>

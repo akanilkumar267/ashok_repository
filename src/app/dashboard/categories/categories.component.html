@@ -12,13 +12,14 @@
         <app-sidebar></app-sidebar>
     </mat-sidenav>
     <mat-sidenav-content>
-        <router-outlet>
+        <!-- <router-outlet> -->
      <!-- Adduser button start -->
                  <div class="container row">
                 <div class="col-md-2"></div>
                 <div class="col-md-4 pt-3" ><h1><b>Categories list</b></h1></div>
-                <div class="col-md-4"></div>
-                <div class="col-md-2 pt-3" *ngIf="!ishideform"><button class="btn btn-default btn-circle" (click)="ishideform = !ishideform">ADD NEW</button></div>
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-2 pt-3" *ngIf="!ishideform"><button class="btn btn-default btn-circle" (click)="ishideform = !ishideform">Add Category</button></div>
              </div>
              <div class="container">
                 <div class="row">
@@ -43,7 +44,7 @@
                                         <mat-label>Category Status</mat-label>
                                         <mat-select formControlName="categoryStatus">
                                             
-                                            <mat-option *ngFor="let status of categoryStatus" [value]="status.id">{{status.name}}</mat-option>
+                                            <mat-option *ngFor="let status of categoryStatus" [value]="status.name">{{status.id}}</mat-option>
                                         </mat-select>
                                             <input matInput placeholder="Enter category status" formControlName="categoryStatus">
                                             <mat-error
@@ -73,38 +74,34 @@
             </div>
       <!-- Add user button end -->
       <!-- Category content start -->
-            <table *ngIf=!ishideform; mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" class="table table-striped">
+            <table *ngIf=!ishideform; mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" class="table table-striped table-bordered">
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 <!-- Position Column -->
                 <ng-container matColumnDef="category_name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Category Name</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
                     <td mat-cell *matCellDef="let element"> {{element.category_name}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="category_status">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Category Status</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
                     <td mat-cell *matCellDef="let element"> {{element.category_status}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="sort_order">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Category Sort Order</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Order</th>
                     <td mat-cell *matCellDef="let element"> {{element.sort_order}} </td>
                 </ng-container>
                 <ng-container matColumnDef="Actions">
-                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <th mat-header-cell *matHeaderCellDef style="text-align:left" class="pull-left">Actions</th>
                     <td mat-cell *matCellDef="let element">
-                        <mat-cell>
-                            <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" routerLink="/dashboard/editcategories/{{element.category_id}}">
+                            <button mat-icon-button matTooltip="Click to Edit" color="primary" routerLink="/dashboard/editcategories/{{element.category_id}}">
                                 <mat-icon>edit</mat-icon>
                             </button>
 
-                            <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="removeRow(element.category_id)">
+                            <button mat-icon-button matTooltip="Click to Delete" color="warn" (click)="removeRow(element.category_id)">
                                 <mat-icon>delete</mat-icon>
                             </button>
-
-                            
-                        </mat-cell>
                     </td>
                 </ng-container>
 
@@ -112,7 +109,7 @@
         
             <mat-paginator *ngIf=!ishideform; [pageSizeOptions]="[5,10, 20,40]" showFirstLastButtons></mat-paginator>
 
-        </router-outlet>
+        <!-- </router-outlet> -->
     </mat-sidenav-content>
 </mat-sidenav-container>
 <!-- Category content end -->

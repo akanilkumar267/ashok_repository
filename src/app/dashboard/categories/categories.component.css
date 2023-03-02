@@ -1,8 +1,21 @@
-tr:nth-child(even) {
-    background-color: lightcyan;
-  }
+
   .btn-circle{
     background-color:lightgrey;
 
   }
   
+  
+  table,th,tr,td{
+    margin-left:20px;
+    margin-right:50px;
+    padding: 2px 5px;
+    
+    
+  }
+   table th {
+    background-color:rgb(130, 232, 227);
+    text-align: center;
+    
+    
+  }
+ 

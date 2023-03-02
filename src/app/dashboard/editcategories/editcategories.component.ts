@@ -56,6 +56,8 @@ export class EditcategoriesComponent {
       
       this.route.params.subscribe(params => {        
         this.category_id = params['category_id'];
+        console.log( this.category_id);
+        
       });
       
       this.editCategoriesInformation(this.category_id);

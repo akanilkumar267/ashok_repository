@@ -9,6 +9,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { LayoutModule } from '../common/layout/layout.module';
 import { AngularmaterialModule } from '../common/angularmaterial/angularmaterial.module';
 import { EditcategoriesComponent } from './editcategories/editcategories.component';
+import { SubcategoriesComponent } from './subcategories/subcategories.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { EditcategoriesComponent } from './editcategories/editcategories.compone
     Dashboard1Component,
     CategoriesComponent,
     EditcategoriesComponent,
+    SubcategoriesComponent,
    
   ],
   imports: [
