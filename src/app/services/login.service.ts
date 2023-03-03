@@ -66,5 +66,15 @@ export class LoginService {
     return this.registerService.get<any>(url);
   }
 
+  public addsubcategoriesinfo(adding:any): Observable<any> {
+    const url = environment.apiURL+'admin/add_sub_category';
+    return this.registerService.post<any>(url,adding);
+  }
+  public deletesubcategoryservice(sub_category_id:any): Observable<any> {
+    const url = environment.apiURL+'admin/delete_sub_category?sub_category_id='+sub_category_id;
+        return this.registerService.get<any>(url);
+  }
+  
+
 
 }
