@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CommonService } from 'src/app/services/common.service';
 import { LoginService } from 'src/app/services/login.service';
+
 @Component({
   selector: 'app-subcategories',
   templateUrl: './subcategories.component.html',
@@ -78,6 +79,7 @@ export class SubcategoriesComponent {
       console.log(this.sort)
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+     this. selection = new SelectionModel(this.dataResponse);
     })
 
   }
@@ -90,7 +92,6 @@ export class SubcategoriesComponent {
   public doFilter($event: any): void {
     this.dataSource.filter = (<HTMLInputElement>$event.target).value.trim().toLocaleLowerCase();
   }
-
   deletedata(sub_category_id: string) {
     if(confirm('Are you sure want to delete?'))
     {
@@ -108,13 +109,16 @@ export class SubcategoriesComponent {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
+    console.log('checkbox',numSelected)
     const numRows = this.dataSource.data.length;
+    console.log('datasource',numRows)
     return numSelected === numRows;
   }
 
   masterToggle() {
+    console.log(this.isAllSelected())
     this.isAllSelected() ?
-        this.selection.clear() :
+        this.selection.clear() :        
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
   addNew()

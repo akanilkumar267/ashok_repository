@@ -10,6 +10,7 @@ import { LayoutModule } from '../common/layout/layout.module';
 import { AngularmaterialModule } from '../common/angularmaterial/angularmaterial.module';
 import { EditcategoriesComponent } from './editcategories/editcategories.component';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
+import { CoursesListComponent } from './courses-list/courses-list.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SubcategoriesComponent } from './subcategories/subcategories.component'
     CategoriesComponent,
     EditcategoriesComponent,
     SubcategoriesComponent,
+    CoursesListComponent,
    
   ],
   imports: [

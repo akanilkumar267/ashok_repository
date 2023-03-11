@@ -19,6 +19,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator'; 
 import { MatSortModule } from '@angular/material/sort';
+import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {MatTabsModule} from '@angular/material/tabs';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 @NgModule({
   declarations: [],
@@ -43,7 +47,11 @@ import { MatSortModule } from '@angular/material/sort';
     MatCheckboxModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule 
+    MatSortModule ,
+    RichTextEditorModule,
+    CKEditorModule,
+    MatTabsModule,
+    NgxMatFileInputModule
   ],
   exports: [
     CommonModule,
@@ -66,7 +74,11 @@ import { MatSortModule } from '@angular/material/sort';
     MatCheckboxModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule 
+    MatSortModule ,
+    RichTextEditorModule,
+    CKEditorModule,
+    MatTabsModule,
+    NgxMatFileInputModule
   ]
 })
 export class AngularmaterialModule { }

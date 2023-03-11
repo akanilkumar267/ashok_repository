@@ -1,0 +1,171 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>ConcretePage.com</span>
+    <span class="toolbar-item-spacer"></span>
+    <app-header></app-header>
+</mat-toolbar>
+<mat-sidenav-container class="app-container">
+    <mat-sidenav #sidenav mode="side" [class.mat-elevation-z4]="true" class="app-sidenav">
+        <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <!-- Add couse list data start -->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form>
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-toolbar>
+                                <span>Add Courses list</span>
+                                <span class="toolbar-item-spacer"></span>
+                                <span style="float: right;"><button mat-raised-button color="accent">Back to list</button></span>
+                               </mat-toolbar>
+                        </mat-card-header><br>
+                        <mat-card-content>
+                         <!-- Category Name -->
+                            <mat-form-field appearance="fill" style="width:100%">
+                                <mat-label>Choose Category</mat-label>
+                                <mat-select >
+                                 <mat-option *ngFor="let cat_data of getcategoriesdata" [value]="cat_data.category_id">{{cat_data.category_name}}</mat-option>
+                                </mat-select>
+                                </mat-form-field>
+                        <!-- Course Name -->
+                                <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Course name</mat-label>
+                                    <input matInput placeholder="Enter Course Name">
+                                </mat-form-field>
+                            <!-- Course Url -->
+                                <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Course Url</mat-label>
+                                    <input matInput placeholder="Enter Course Url">
+                                </mat-form-field>
+                             <!-- Rich text Editor Data-->
+                             <mat-tab-group>
+                                <mat-tab label="Over view">  <ckeditor [editor]="Editor" data="hai" ></ckeditor> </mat-tab>
+                                <mat-tab label="Exam Syllabus">  <ckeditor [editor]="Editor" data="hello" ></ckeditor> </mat-tab>
+                                <mat-tab label="Course Benifits"> <ckeditor [editor]="Editor" data="" ></ckeditor> </mat-tab>
+                                <mat-tab label="Exam Information">  <ckeditor [editor]="Editor" data="" ></ckeditor> </mat-tab>
+                              </mat-tab-group>
+                            <div>
+                            
+                            </div><br>
+                           
+                            <!-- Course Vedeo -->
+                                  <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Course vedeo</mat-label>
+                                    <input matInput placeholder="Enter Course Vedeo">
+                                </mat-form-field>
+                                <!-- Course image -->
+                                <input type="file" (change)="uploadFileData($event)" >
+                               
+                                <!-- Course price -->
+                                <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Course price</mat-label>
+                                    <input matInput placeholder="Enter Course Price">
+                                </mat-form-field>
+                                 <!-- Meta title -->
+                                 <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Meta title</mat-label>
+                                    <input matInput placeholder="Enter Metatitle">
+                                </mat-form-field>
+                                <!-- Meta Description -->
+                                <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Meta Description</mat-label>
+                                    <input matInput placeholder="Enter Metatitle Description">
+                                </mat-form-field>
+                                 <!-- Meta Keywords -->
+                                 <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Meta Keywords</mat-label>
+                                    <input matInput placeholder="Enter Metatitle Keywords">
+                                </mat-form-field>
+                                <!-- Google code Script -->
+                                <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Google code Script</mat-label>
+                                    <input matInput placeholder="Enter Google code Script">
+                                </mat-form-field>
+                                 <!-- Canonical href -->
+                                <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Canonical href</mat-label>
+                                    <input matInput placeholder="Enter Canonical href">
+                                </mat-form-field>
+                                  <!-- Couse status -->
+                                <mat-form-field appearance="fill" style="width:100%">
+                                    <mat-label>Course status</mat-label>
+                                    <mat-select placeholder="Select">
+                                        <!-- <mat-option [value]="">None</mat-option> -->
+                                        <mat-option *ngFor="let status of CouseStatus"
+                                            value={{status.id}}>{{status.name}}</mat-option>
+                                    </mat-select>
+                                    </mat-form-field>
+                        </mat-card-content>
+                        <mat-card-actions class="m-auto">
+                            <button type="submit" mat-raised-button color="primary">Submit</button> &nbsp;&nbsp;&nbsp;
+                            <button type="button" mat-button mat-raised-button color="warn" >Cancel</button>
+                        </mat-card-actions>
+
+                    </mat-card>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+
+        <!-- mat-table start -->
+        
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+           <mat-toolbar>
+            <span><h1 class="header_style">Courses List</h1></span>
+            <span class="toolbar-item-spacer"></span>
+            <span style="float: right;"><button mat-raised-button color="primary">Add New Course</button></span>
+           </mat-toolbar>
+              
+                    <span style="float: right;">
+                    <label>Search:</label>
+                    <input type="text"  (keyup)="doFilter($event)"/>
+                  </span>
+            <table class="mat-elevation-z8" mat-table [dataSource]="coursesDataSource">
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!--Course Name Column -->
+            <ng-container matColumnDef="category_name">
+                <th mat-header-cell *matHeaderCellDef >Course Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.category_name}} </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="category_status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let element"> {{element.category_status}} </td>
+            </ng-container>
+            <!-- Edit Column -->
+            <ng-container matColumnDef="Edit">
+                <th mat-header-cell *matHeaderCellDef>Edit</th>
+                <td mat-cell *matCellDef="let element"><button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
+                    <mat-icon>edit</mat-icon></button></td>
+            </ng-container>
+            <!-- Delete Column -->
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>Delete</th>
+                <td mat-cell *matCellDef="let element"><button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="warn">
+                    <mat-icon>delete</mat-icon></button></td>
+            </ng-container>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        
+           
+
+    
+            </mat-sidenav-content>
+</mat-sidenav-container>

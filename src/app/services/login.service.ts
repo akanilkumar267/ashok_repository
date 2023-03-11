@@ -75,6 +75,9 @@ export class LoginService {
         return this.registerService.get<any>(url);
   }
   
-
+   public cousesInfoService():Observable<any>{
+    const url=environment.apiURL+'admin/categories';
+    return this.registerService.get<any>(url);
+   }
 
 }

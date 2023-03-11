@@ -1,0 +1,12 @@
+table th{
+    background-color: rgb(191, 197, 201);
+}
+.header_style{
+    font-size: 40px;
+    color: rgb(178, 182, 194);
+    text-align: center;
+    padding-top: 5px;
+}
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 300px !important;
+}
