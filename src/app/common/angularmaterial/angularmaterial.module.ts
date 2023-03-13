@@ -23,6 +23,7 @@ import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {MatTabsModule} from '@angular/material/tabs';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -51,7 +52,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     RichTextEditorModule,
     CKEditorModule,
     MatTabsModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
+    MatDialogModule
   ],
   exports: [
     CommonModule,
@@ -78,7 +80,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     RichTextEditorModule,
     CKEditorModule,
     MatTabsModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
+    MatDialogModule
   ]
 })
 export class AngularmaterialModule { }

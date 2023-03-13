@@ -1,13 +1,16 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { formatDate } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CommonService } from 'src/app/services/common.service';
 import { LoginService } from 'src/app/services/login.service';
-
+import * as XLSX from 'xlsx';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { DeletedialogComponent } from '../deletedialog/deletedialog.component';
 @Component({
   selector: 'app-subcategories',
   templateUrl: './subcategories.component.html',
@@ -20,6 +23,7 @@ export class SubcategoriesComponent {
   dataSource = new MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('TABLE') table!: ElementRef;
   dataResponse: any;
   //code related to add button
   Subcategory: FormGroup;
@@ -28,7 +32,8 @@ export class SubcategoriesComponent {
   getcategoriesdata: any;
   selection = new SelectionModel<any>(true, []);
   changeLabel:string="Add Category";
-  constructor(private subcategories: LoginService, private subcategoryBuilder: FormBuilder, private subData: LoginService, private alertservice: CommonService) {
+ 
+  constructor(private subcategories: LoginService, private subcategoryBuilder: FormBuilder, private subData: LoginService, private alertservice: CommonService,private dialog: MatDialog) {
     this.Subcategory = this.subcategoryBuilder.group({
       sub_category_id: [''],
       subcategoryname: ['', Validators.required],
@@ -93,31 +98,48 @@ export class SubcategoriesComponent {
     this.dataSource.filter = (<HTMLInputElement>$event.target).value.trim().toLocaleLowerCase();
   }
   deletedata(sub_category_id: string) {
-    if(confirm('Are you sure want to delete?'))
-    {
-      this.subData.deletesubcategoryservice(sub_category_id).subscribe((response: any) => {
-        // console.log(response)
-        if (response.status == 1) {
-          this.subcategoryData();
-  
-        }
-      });
-    }
+    const openmodal=this.dialog.open(DeletedialogComponent, {
+      height: '150px',
+      width: '300px',
+      data: {       
+       sub_category_id_data:sub_category_id
+
+      }
+    });
+    openmodal.afterClosed().subscribe(res=>{
+      this.subcategoryData();
+
+    });
     
+   
+    
+
+  }
+  allDeleteData(){
+    const deleteArray=<any>[];
+    this.selection.selected.forEach(item=>{
+      deleteArray.push(item.sub_category_id);
+     
+    })
+    console.log(deleteArray)
+    this.subData.deletesubcategoryservice(deleteArray).subscribe((response: any) => {
+      // console.log(response)
+      if (response.status == 1) {
+        this.subcategoryData();
+
+      }
+    });
 
   }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    console.log('checkbox',numSelected)
-    const numRows = this.dataSource.data.length;
-    console.log('datasource',numRows)
-    return numSelected === numRows;
+        const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
   }
 
   masterToggle() {
-    console.log(this.isAllSelected())
-    this.isAllSelected() ?
+        this.isAllSelected() ?
         this.selection.clear() :        
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
@@ -139,6 +161,55 @@ export class SubcategoriesComponent {
     this.changeLabel="Update Category";
 
    }
+   exportAsExcel()
+    {
+      const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);//converts a DOM TABLE element to a worksheet
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+      /* save to file */
+      XLSX.writeFile(wb, 'SheetJS.csv');
+
+    }
+    popUp(){
+
+      const openmodal=this.dialog.open(DialogComponent, {
+        height: '400px',
+        width: '600px',
+        data: {
+         name:"raghu",
+         category_data:this.getcategoriesdata,
+         subcategory_data:'',
+         action:'add',
+         
+
+        }
+      });
+      openmodal.afterClosed().subscribe(res=>{
+        this.subcategoryData();
+
+      });
+    }
+    editDilog(row:any){
+      console.log(row);
+      const openmodal=this.dialog.open(DialogComponent, {
+        height: '400px',
+        width: '600px',
+        data: {
+         name:"raghu",
+         category_data:this.getcategoriesdata,
+         subcategory_data:row,
+         action:'edit',
+
+
+        }
+      });
+      openmodal.afterClosed().subscribe(res=>{
+        this.subcategoryData();
+
+      });
+
+    }
    
 
 }

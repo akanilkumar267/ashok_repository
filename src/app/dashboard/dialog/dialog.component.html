@@ -1,0 +1,38 @@
+<form [formGroup]="Subcategory" (ngSubmit)="formSubmit()">
+    <mat-card>
+      <mat-card-header class="m-auto">
+        <mat-card-title style="color:rgb(21, 128, 132)">{{changeLabelName}}</mat-card-title>
+      </mat-card-header><br> 
+     
+        <mat-card-content>
+          <mat-form-field appearance="fill" style="width:100%">
+            <mat-label>Category name</mat-label>
+            <mat-select formControlName="category_id">
+                <mat-option *ngFor="let cat_data of category_data" [value]="cat_data.category_id">{{cat_data.category_name}}</mat-option>
+            </mat-select>
+            <mat-error
+                      *ngIf="submitted && f['category_id'].value=='' && f['category_id'].errors && f['category_id'].errors['required']">please select category name</mat-error>    
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width:100%">
+              <mat-label>Sub Category name</mat-label>
+              <input matInput placeholder="Enter subcategory name" formControlName="subcategoryname" style="width:100%">
+              <mat-error
+              *ngIf="submitted && f['subcategoryname'].value=='' && f['subcategoryname'].errors && f['subcategoryname'].errors['required']">please
+              enter subcategory name</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" style="width:100%">
+                    
+            <mat-label>Sort order</mat-label>
+           <input matInput placeholder="Enter category sort order" formControlName="sortorder"> 
+           <mat-error
+              *ngIf="submitted && f['sortorder'].value=='' && f['sortorder'].errors && f['sortorder'].errors['required']">please enter sortorder</mat-error>
+                                  
+               </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions class="m-auto" >
+          <button type="submit" mat-raised-button color="primary">{{changeButtonName}}</button> &nbsp;&nbsp;&nbsp;
+          <button mat-button mat-raised-button color="warn" (click)="closeDialog()">Cancel</button>
+
+      </mat-card-actions>
+        </mat-card>
+        </form>

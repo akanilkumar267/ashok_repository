@@ -11,6 +11,8 @@ import { AngularmaterialModule } from '../common/angularmaterial/angularmaterial
 import { EditcategoriesComponent } from './editcategories/editcategories.component';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { CoursesListComponent } from './courses-list/courses-list.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { DeletedialogComponent } from './deletedialog/deletedialog.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { CoursesListComponent } from './courses-list/courses-list.component';
     EditcategoriesComponent,
     SubcategoriesComponent,
     CoursesListComponent,
+    DialogComponent,
+    DeletedialogComponent,
    
   ],
   imports: [
